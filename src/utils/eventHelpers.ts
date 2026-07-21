@@ -1,7 +1,4 @@
-import {
-  Address,
-  Property,
-} from "generated";
+import { Address, Property } from "envio";
 import {getRelationshipData, getAddressData, getPropertyData } from "./ipfs";
 
 // Function to get all wallet addresses from environment variables
@@ -24,7 +21,6 @@ export function getAllowedSubmitters(): string[] {
 
   return wallets;
 }
-
 
 // Helper to create Property entity
 export function createPropertyEntity(propertyDataId: string, propertyData: any): Property {
@@ -76,7 +72,6 @@ export function createAddressEntity(addressId: string, addressData: any): Addres
   };
 }
 
-
 // Helper to process County data with full parallelism
 export async function processCountyData(context: any, metadata: any, cid: string, propertyEntityId: string) {
   // Initialize entity IDs that will be populated from IPFS data
@@ -88,7 +83,6 @@ export async function processCountyData(context: any, metadata: any, cid: string
   const relationshipPromises = [];
 
   const propertyAddressCid = metadata.relationships?.property_has_address?.["/"];
-
 
   if (propertyAddressCid) {
     relationshipPromises.push(
@@ -112,7 +106,6 @@ export async function processCountyData(context: any, metadata: any, cid: string
       addressDataCid = relationshipResult.data.to?.["/"];
     }
   }
-
 
   if (propertyDataCid) {
     allDataPromises.push(

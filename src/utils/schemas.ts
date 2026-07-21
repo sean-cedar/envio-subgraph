@@ -64,7 +64,6 @@ export const propertySchema = S.schema({
   zoning: S.optional(S.string),
 });
 
-
 // Inferred Types
 export type IpfsMetadata = S.Infer<typeof ipfsMetadataSchema>;
 export type RelationshipData = S.Infer<typeof relationshipSchema>;

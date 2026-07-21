@@ -1,8 +1,5 @@
 import assert from "assert";
-import { 
-  TestHelpers,
-  ERC1967Proxy_DataGroupConsensusUpdated
-} from "generated";
+import { TestHelpers, ERC1967Proxy_DataGroupConsensusUpdated } from "envio";
 const { MockDb, ERC1967Proxy } = TestHelpers;
 
 describe("ERC1967Proxy contract DataGroupConsensusUpdated event tests", () => {

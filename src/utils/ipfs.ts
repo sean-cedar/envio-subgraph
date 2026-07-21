@@ -1,4 +1,4 @@
-import { experimental_createEffect, S, type EffectContext } from "envio";
+import { createEffect, S, type EffectContext } from "envio";
 import {
     ipfsMetadataSchema,
     relationshipSchema,
@@ -362,7 +362,7 @@ async function fetchDataWithLimitedRetry<T>(
 }
 
 // Fetch relationship data (from/to structure)
-export const getRelationshipData = experimental_createEffect(
+export const getRelationshipData = createEffect(
     {
         name: "getRelationshipData",
         input: S.string,
@@ -381,7 +381,7 @@ export const getRelationshipData = experimental_createEffect(
 );
 
 // Fetch address data
-export const getAddressData = experimental_createEffect(
+export const getAddressData = createEffect(
     {
         name: "getAddressData",
         input: S.string,
@@ -423,7 +423,7 @@ export const getAddressData = experimental_createEffect(
 );
 
 // Fetch property data (property_type, built years)
-export const getPropertyData = experimental_createEffect(
+export const getPropertyData = createEffect(
     {
         name: "getPropertyData",
         input: S.string,
@@ -456,8 +456,7 @@ export const getPropertyData = experimental_createEffect(
     }
 );
 
-
-export const getIpfsMetadata = experimental_createEffect(
+export const getIpfsMetadata = createEffect(
     {
         name: "getIpfsMetadata",
         input: S.string,

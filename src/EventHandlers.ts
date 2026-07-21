@@ -1,19 +1,14 @@
 /*
  * Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features
  */
-import {
-  ERC1967Proxy,
-  ERC1967Proxy_DataGroupHeartBeat,
-  ERC1967Proxy_DataSubmitted,
-  DataSubmittedWithLabel,
-  CountyStats,
-  CountySubmitterStats,
-} from "generated";
+import { indexer, ERC1967Proxy, ERC1967Proxy_DataGroupHeartBeat, ERC1967Proxy_DataSubmitted, DataSubmittedWithLabel, CountyStats, CountySubmitterStats } from "envio";
 
 import { bytes32ToCID, getIpfsMetadata } from "./utils/ipfs";
 import { processCountyData } from "./utils/eventHelpers";
 
-ERC1967Proxy.DataGroupHeartBeat.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ERC1967Proxy", event: "DataGroupHeartBeat" },
+  async ({ event, context }) => {
   // Process HeartBeat events from all submitters
 
   const entity: ERC1967Proxy_DataGroupHeartBeat = {
@@ -101,9 +96,12 @@ ERC1967Proxy.DataGroupHeartBeat.handler(async ({ event, context }) => {
       error: (error as Error).message
     });
   }
-});
+}
+);
 
-ERC1967Proxy.DataSubmitted.handler(async ({ event, context }) => {
+indexer.onEvent(
+  { contract: "ERC1967Proxy", event: "DataSubmitted" },
+  async ({ event, context }) => {
   // Process DataSubmitted events from all submitters
 
   const entity: ERC1967Proxy_DataSubmitted = {
@@ -284,4 +282,5 @@ ERC1967Proxy.DataSubmitted.handler(async ({ event, context }) => {
       error: (error as Error).message
     });
   }
-});
+}
+);
